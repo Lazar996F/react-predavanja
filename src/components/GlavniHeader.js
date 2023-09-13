@@ -8,6 +8,7 @@ const GlavniHeader = () => {
         <Link to="/prvaRuta">Prva stranica</Link>
         <Link to="/drugaRuta">Druga stranica</Link>
         <Link to="/trecaRuta">Treca stranica</Link>
+        <Link to="/vijesti">VIJESTI</Link>
       </div>
     </>
   );
