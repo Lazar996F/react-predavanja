@@ -43,3 +43,39 @@
   color: red;
   font-weight: bold;
 }
+
+
+.forma-style {
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+
+.red-tabele {
+  cursor: pointer;
+  z-index: 200;
+}
+
+.obrisi-kolona {
+  color: red;
+  z-index: 1000000;
+}

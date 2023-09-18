@@ -10,10 +10,15 @@ import TrecaSaPromjenjivom from "./components/TrecaSaPromjenjivom";
 import GlavniHeader from "./components/GlavniHeader";
 import NePostojecaRuta from "./components/NePostojecaRuta";
 import StranicaVijesti from "./components/StranicaVijesti";
+import PocetnaStranica from "./components/PocetnaStranica";
+import IzmjenaPodatakaStranica from "./components/IzmjenaPodatakaStranica";
 
 export const vijestiContext = createContext();
 
 function App() {
+  useEffect(() => {
+    document.title = "REACT PREDAVANJA";
+  }, []);
   const [nizVijesti, postaviNizVijesti] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -35,11 +40,15 @@ function App() {
         <BrowserRouter>
           <GlavniHeader />
           <Routes>
-            <Route path="/" />
+            <Route path="/" Component={PocetnaStranica} />
             <Route path="/prvaRuta" Component={PrvaStranica} />
             <Route path="/drugaRuta" Component={DrugaStranica} />
             <Route path="/trecaRuta" Component={TrecaStranica} />
             <Route path="/vijesti" Component={StranicaVijesti} />
+            <Route
+              path="/korisnik/:korisnikID"
+              Component={IzmjenaPodatakaStranica}
+            />
             <Route
               path="/trecaRuta/:promjenjiva"
               Component={TrecaSaPromjenjivom}
