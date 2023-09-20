@@ -1,11 +1,25 @@
-import { useEffect, useState } from 'react'
+import React,{ useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
 import { ucitajJednogKorisnikaPoID } from '../helpers/zahtjevi'
 import FormaZaIzmjenu from './FormaZaIzmjenu'
 
-const IzmjenaPodatakaStranica = () => {
-    const [jedanKorisnik, setJedanKorisnik] = useState(null)
-    const [loading, setLoading] = useState(true)
+interface Korisnik {
+    ime: String,
+    email: String,
+    godine: Number
+}
+
+interface IzmjenaPodatakaProps {
+
+}
+
+const IzmjenaPodatakaStranica: React.FC<IzmjenaPodatakaProps> = () => {
+    const [jedanKorisnik, setJedanKorisnik] = useState<Korisnik>({
+        ime: '',
+        email: '',
+        godine: 18
+    })
+    const [loading, setLoading] = useState<boolean>(true)
 
     const {korisnikID} = useParams()
 

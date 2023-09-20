@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react'
 import {useFormik} from 'formik'
 import NasaTable from './NasaTable'
 import { ucitajSveKorisnike, sacuvajNovogKorisnika, obrisiKorisnika } from '../helpers/zahtjevi'
+import { GlavniText } from '../styled/GlavniText'
+import { NasButton } from '../styled/NasButton'
+import HarmonikaTekst from './HarmonikaTekst.tsx'
 
+const DUGACAK_TEKST = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi ut"
 const PocetnaStranica = () => {
 const [listaKorisnika, setListaKorisnika] = useState([])
 const [loading, setLoading] = useState(false);
@@ -35,10 +39,14 @@ const [loading, setLoading] = useState(false);
     }
 
 return (
+    <div style={{width:'900px'}}>
+        <GlavniText velicina={10}>Ovo je styled glavni</GlavniText>
+        <GlavniText velicina={24}>Ovo je styled glavni</GlavniText>
+        <NasButton varijanta="secondary">styled</NasButton>
+        <HarmonikaTekst opis='' naslovPosta="sadasd" /> 
+        <br/>
     loading ? <p>Loading...</p> : <div style={{marginTop:'40px'}}>
             <p>Pocetna stranice</p>
-
-
             <form onSubmit={handleSubmit} className='forma-style'>
             <input value={values.ime} onChange={handleChange} placeholder='Unesite ime' name="ime" />
             <input value={values.email} onChange={handleChange} placeholder='Unesite email' name="email"/>
@@ -48,7 +56,9 @@ return (
             <br/>
             <p>LISTA KORISNIKA {`(${listaKorisnika.length})`}</p>
             <NasaTable nizPodataka={listaKorisnika} obrisiKorsnika={obrisiKorisnikaPoID} />
-       </div>)
+       </div>
+       </div>
+       )
 }
 
 export default PocetnaStranica;

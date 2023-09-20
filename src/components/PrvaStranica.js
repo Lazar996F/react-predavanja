@@ -7,6 +7,7 @@ const PrvaRutaKomponenta = () => {
     <>
       <p className="boja-prve-stranice">Stranica prve rute</p>
       <Link to={`/trecaRuta/${paramPrveStrane}`}>Idi na onu sa parametrom</Link>
+      <div></div>
     </>
   );
 };

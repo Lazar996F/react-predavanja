@@ -1,19 +1,34 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { vijestiContext } from "../App";
+import { usePostsWithUsers } from "../hooks/usePostsWithUsers";
+import { toast } from "react-toastify";
+import Accordion from "react-bootstrap/Accordion";
 
 const StranicaVijesti = () => {
-  const vijestData = useContext(vijestiContext);
+  //ucitavanje vijesti iz globalnog state-a
+  //const vijestData = useContext(vijestiContext);
+  const { postovi, korisnici, loading, greska } = usePostsWithUsers();
+
+  useEffect(() => {
+    if (greska) {
+      toast.error("Doslo je do greske");
+    }
+  }, [loading]);
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <>
       <h1>VIJESTI</h1>
-      <p>Ukupno vijesti {vijestData.vijesti.length}</p>
-      {vijestData.vijesti.map((jednaVijest) => (
+      <p>Ukupno vijesti {postovi.length}</p>
+      {postovi.map((jednaVijest) => (
         <div key={jednaVijest.id}>
-          <h3 style={{ fontWeight: "bold", color: "green" }}>
-            {jednaVijest.title}
-          </h3>
-          <p style={{ color: "grey" }}>{jednaVijest.body}</p>
+          <Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>{jednaVijest.title}</Accordion.Header>
+              <Accordion.Body>{jednaVijest.body}</Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         </div>
       ))}
     </>

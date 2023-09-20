@@ -1,10 +1,17 @@
 import {useNavigate} from 'react-router-dom'
+import styled, {css} from 'styled-components'
+
+const Table = styled.table`
+  ${props => props.responsive === 'sm' && css`
+  overflow-x: scroll;
+  `}
+`
 
 const NasaTable = ({nizPodataka, obrisiKorsnika}) => {
   const navigateTo = useNavigate()
 
 return (
-<table>
+<Table responsive="sm" className='m-3'>
   <tr>
     <th>IME</th>
     <th>Email adresa</th>
@@ -23,7 +30,7 @@ return (
       </tr>
     ))
   }
-</table>
+</Table>
     )
 }
 

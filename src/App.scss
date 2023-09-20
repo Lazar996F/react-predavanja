@@ -1,0 +1,90 @@
+$boja_plava: #5353b3;
+
+$textNormalnaVelicina: 16px;
+
+.App {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  .boja-prve-stranice {
+    color: rgb(40, 40, 151);
+  }
+  
+  
+  .topnav {
+    overflow: hidden;
+    background-color: $boja_plava;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  
+  
+  .neRuta {
+    color: red;
+    font-weight: bold;
+  }
+  
+  
+  .forma-style {
+  
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+  
+  
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  
+  
+  .red-tabele {
+    cursor: pointer;
+    z-index: 200;
+  }
+  
+  .obrisi-kolona {
+    color: red;
+    z-index: 1000000;
+  }
+  
+  
+  .neki-novi-stil {
+    background-color: $boja_plava;
+    font-size: $textNormalnaVelicina;
+  }

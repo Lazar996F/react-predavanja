@@ -1,5 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
-import "./App.css";
+import React, { createContext, useEffect, useState, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 
@@ -11,7 +10,14 @@ import GlavniHeader from "./components/GlavniHeader";
 import NePostojecaRuta from "./components/NePostojecaRuta";
 import StranicaVijesti from "./components/StranicaVijesti";
 import PocetnaStranica from "./components/PocetnaStranica";
-import IzmjenaPodatakaStranica from "./components/IzmjenaPodatakaStranica";
+import IzmjenaPodatakaStranica from "./components/IzmjenaPodatakaStranica.tsx";
+import { ucitajKorisnikeSaPostovima } from "./helpers/zahtjevi";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import Modal from "./components/Modal";
+import "./App.scss";
+import { stilTeksta } from "./helpers/styles";
 
 export const vijestiContext = createContext();
 
@@ -24,21 +30,30 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((odgovorOdApia) => postaviNizVijesti(odgovorOdApia.data))
-      .then(() => setLoading(false));
+    ucitajKorisnikeSaPostovima().then(() => setLoading(false));
   }, []);
 
   if (loading === true) return <p>Loading</p>;
 
   return (
     <div className="App">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <vijestiContext.Provider
         value={{ vijesti: nizVijesti, postaviNizVijesti }}
       >
         <BrowserRouter>
-          <GlavniHeader />
+          <GlavniHeader className="neki-novi-stil" />
           <Routes>
             <Route path="/" Component={PocetnaStranica} />
             <Route path="/prvaRuta" Component={PrvaStranica} />
